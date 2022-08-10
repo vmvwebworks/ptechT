@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    container_name: postgres_container_psT
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: secret_user
+      POSTGRES_PASSWORD: secret_pass
+    restart: always
+  pgadmin:
+    container_name: pgadmin4_container_psT
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: secret_pass
+    ports:
+      - "5051:80"
+  rails_service:
+    restart: always
+    environment:
+      MYAPP_DATABASE_USER: secret_user
+      MYAPP_DATABASE_PASSWORD: secret_pass
+    volumes:
+      - .:/ptechT
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
