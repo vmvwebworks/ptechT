@@ -1,0 +1,26 @@
+= form_with(model: booking) do |f|
+    .row
+        .col-md-8.mb-3
+            label Name
+            = f.text_field :name, class: "form-control"
+        .col-md-1.mb-3
+            label Price
+            = f.number_field :price, class: "form-control"
+        .col-md-3.mb-3
+            label Currency
+            = f.select(:currency, options_from_collection_for_select(Currency.all, 'id', 'name'),{}, {class: "form-select"})
+    .row
+        .col-md-2.mb-3
+            label Check In
+            = f.date_field :check_in, class: "form-control"
+        .col-md-2.mb-3
+            label Check Out
+            = f.date_field :check_out, class: "form-control"
+        .col-md-4.mb-3
+            label Guest Name
+            = f.text_field :guest_name, class: "form-control"
+        .col-md-4.mb-3
+            label Guest Email
+            = f.email_field :guest_email, class: "form-control"
+    
+    = f.submit "Submit", class: "btn btn-primary w-100"

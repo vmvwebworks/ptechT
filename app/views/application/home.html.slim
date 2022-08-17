@@ -1,0 +1,6 @@
+h1 Bookings
+
+ul.list-group
+    - @bookings.each do |booking|
+        li.list-group-item
+            = booking.name
