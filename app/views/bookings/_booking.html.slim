@@ -1,0 +1,12 @@
+tr
+    td= booking.name
+    td= booking.price
+    td= booking.currency.name
+    td= booking.check_in.to_date
+    td= booking.check_out.to_date
+    td= booking.guest_name
+    td= booking.guest_email
+    td
+        .btn-group
+            = link_to "Edit", edit_booking_path(booking), class: "btn btn-warning"
+            = link_to "Remove", booking, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"         

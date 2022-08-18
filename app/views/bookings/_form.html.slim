@@ -1,12 +1,13 @@
+= link_to "Go back to list", root_path, class: "btn btn-light w-100"
 = form_with(model: booking) do |f|
     .row
         .col-md-8.mb-3
             label Name
             = f.text_field :name, class: "form-control"
-        .col-md-1.mb-3
+        .col-md-2.mb-3
             label Price
             = f.number_field :price, class: "form-control"
-        .col-md-3.mb-3
+        .col-md-2.mb-3
             label Currency
             = f.select(:currency, options_from_collection_for_select(Currency.all, 'id', 'name'),{}, {class: "form-select"})
     .row
@@ -24,3 +25,5 @@
             = f.email_field :guest_email, class: "form-control"
     
     = f.submit "Submit", class: "btn btn-primary w-100"
+    
+

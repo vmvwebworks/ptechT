@@ -1,6 +1,16 @@
 h1 Bookings
 
-ul.list-group
-    - @bookings.each do |booking|
-        li.list-group-item
-            = booking.name
+table.table.table-sm
+    thead
+        tr
+            th Name
+            th Price
+            th Currency
+            th Check In
+            th Check Out
+            th Guest Name
+            th Guest Email
+            th Actions
+    
+    tbody
+        = render partial: "bookings/booking", collection: @bookings
