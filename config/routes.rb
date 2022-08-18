@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   root "application#home"
 
   resources :bookings
+  namespace :api do
+    resources :bookings
+  end
 end
