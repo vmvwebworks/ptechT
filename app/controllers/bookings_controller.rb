@@ -5,8 +5,8 @@ class BookingsController < ApplicationController
     end
 
     def create
+        puts params
         booking = Booking.create(bookings_params)
-        add_currency(booking)
         redirect_to root_path
     end
     
@@ -17,7 +17,6 @@ class BookingsController < ApplicationController
     def update
         booking = Booking.find(params[:id])
         booking.update(bookings_params)
-        add_currency(booking)
         redirect_to root_path
     end
 
@@ -28,14 +27,7 @@ class BookingsController < ApplicationController
 
     private
 
-        def add_currency(booking)
-            unless params[:booking][:currency].blank?
-                currency = Currency.find(params[:booking][:currency].to_i)
-                currency.bookings << booking
-            end
-        end
-
         def bookings_params
-            params.require(:booking).permit(:name, :price, :check_in, :check_out, :guest_name, :guest_email  )
+            params.require(:booking).permit(:name, :price, :currency_id, :check_in, :check_out, :guest_name, :guest_email  )
         end
 end

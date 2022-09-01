@@ -9,7 +9,7 @@
             = f.number_field :price, class: "form-control"
         .col-md-2.mb-3
             label Currency
-            = f.select(:currency, options_from_collection_for_select(Currency.all, 'id', 'name'),{}, {class: "form-select"})
+            = f.select(:currency_id, options_from_collection_for_select(Currency.all, 'id', 'name'),{}, {class: "form-select"})
     .row
         .col-md-2.mb-3
             label Check In
