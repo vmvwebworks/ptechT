@@ -8,16 +8,13 @@ module Api
         end
     
         def create
-            # puts params
             booking = Booking.create(bookings_params)
-            # add_currency(booking)
             json_response(booking)
         end
     
         def update
             booking = Booking.find(params[:id])
             booking.update(bookings_params)
-            add_currency(booking)
             json_response(booking)
         end
     
@@ -27,14 +24,6 @@ module Api
         end
     
         private
-    
-            def add_currency(booking)
-                unless params[:booking][:currency].blank?
-                    currency = Currency.find(params[:booking][:currency].to_i)
-                    currency.bookings << booking
-                end
-            end
-    
             def bookings_params
                 params.permit( :name, :currency_id, :price, :check_in, :check_out, :guest_name, :guest_email )
             end
